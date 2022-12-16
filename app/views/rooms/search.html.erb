@@ -1,0 +1,27 @@
+<div class="container-fiuld room">
+  <% if @q.address_or_room_name_cont != nil %>
+    <div class="display-6"><%= "#{@q.address_or_room_name_cont} の検索結果 #{@results.count}件" %></div>
+  <% end %>
+
+  <div class="row mt-3">
+    <% @results.each do |room| %>
+      <div class="col-sm-6 col-lg-4 col-xl-3 bg-light col-room">
+        <%= link_to room do %>
+          <div class="search-room-image-out"> 
+            <% if room.room_image? %>
+              <%= image_tag room.room_image.url, class: "search-room-image" %>
+            <% else %>
+              <%= image_tag "default_room.jpg", class: "search-room-image"%>
+            <% end %>
+          </div>
+          <div class="room-profile">
+            <p class="display-6"><%= room.room_name %></p>
+            <p><%= room.address %></p>
+            <p class="text-end">¥<%= room.fee %></p>
+          </div>
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
+</div>

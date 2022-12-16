@@ -1,0 +1,61 @@
+<div class="bg-light container room-show" >
+  <div class="row">
+    <div class="col-md-8">
+      <% if @room.room_image? %>
+        <%= image_tag @room.room_image.url, class: "room-show-image" %>
+      <% else %>
+        <%= image_tag "default_room.jpg", alt: "メニュー", class: "room-show-image-default" %>
+      <% end %>
+
+      <div class="room_show_detile" >
+        <div class="room_show_detile_icon">
+          <% if @user.profile_image.present? %>
+            <%= image_tag @user.profile_image.url, class: "room_user_icon" %> 
+          <% else %>
+            <%= image_tag "/assets/default.png", class: "room_user_icon" %> 
+          <% end %>
+        </div>
+        <div class="room_show_profile">
+          <p class="room_show_profile_name"><%= @room.room_name %></p>
+          <p class="room_show_profile_address">住所：<%= @room.address %></p>
+        </div>
+      </div>
+      <p class="room_show_detile_description"><%= @room.description %></p>
+    </div>
+    <div class = "col-md-4">
+      <div class="room_show_nav">
+      <h5 class="text-start mt-3">¥ <%= @room.fee %> / 日</h5>
+        <div class="room_show_date_select">
+          <%= form_with(model: @booking, method: 'post', url: confirm_bookings_path, class: "shadow p-3 mb-3 bg-light rounded", local: true) do |f| %>
+            <% if @booking.errors.any? %>
+              <div class = "alert">
+                <ul>
+                  <% @booking.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+
+            <%= f.label :start_date ,"開始日" %>
+            <%= f.date_field :start_date, class: "form-control mb-4" %>
+
+            <%= f.label :end_date ,"終了日" %>
+            <%= f.date_field :end_date, class: "form-control mb-4" %>
+
+            <%= f.label :person ,"人数" %>
+            <%= f.number_field :person, class: "form-control mb-4" %>
+
+            <% if logged_in? %>
+              <%= f.submit "予約する", class: "btn btn-primary form-control" %>
+            <% else %>
+              <%= link_to "ログイン", login_path, class: "btn btn-success" %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

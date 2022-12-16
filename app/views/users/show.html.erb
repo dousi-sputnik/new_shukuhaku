@@ -1,0 +1,57 @@
+<div class="flex-user">
+	<div class="container pt-3 bg-light shadow rounded mt-5">
+		<div class="row">
+      <div class="col-md-10 offset-md-1">
+        <h1 class="float-start mb-5" id="top-dis">アカウント(<%= @user.username %>)</h1>
+          <table class="table">
+            <tr>
+              <th scope="row" id="top-dis">メールアドレス</th>
+              <td><%= @user.email %></td>
+            </tr>
+            <tr>
+              <th scope="row" id="top-dis">一言紹介</th>
+              <td><%= @user.introduction %></td>
+            </tr>
+          </table>
+
+      <div class="row align-items-center">
+        <div class="col-3">
+          <%= link_to "編集" , edit_user_path(@user), class: "btn btn-info text-light" %>
+        </div>
+      </div>
+      </div>
+		</div>
+	</div>
+</div>
+
+
+<!--
+<h1 class="text-center mt-4"><%= @user.username %>'s profile</h1>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="shadow p-3 mb-3 bg-light rounded">
+      <% if @user.profile_image? %>
+        <%= image_tag @user.profile_image.url %>
+      <% end %>
+        <div class="row mb-3 mt-3">
+          <label class: "col-2 col-form-label text-dark" id="top-dis">ユーザー名
+            <p id="top-dis"><%= @user.username %></p>
+          </lable>
+          <div class="col-10">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<% if logged_in? && @user == current_user %>
+  <div class="text-center mt-4">
+    <%= link_to "Edit your profile", edit_user_path(@user), class: "btn btn-outline-info" %>
+  </div>
+<% end %>
+-->

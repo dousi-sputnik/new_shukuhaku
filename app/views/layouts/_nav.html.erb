@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+  <div class="container-fluid">
+    <%= link_to "Pote Share", root_path, class: "navbar-brand", id: "logo"%>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation" %>
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse me-1" id="navbarsExample04">
+    <ul class="navbar-nav me-auto me-1 mb-md-0">
+      <li class="nav-item">
+        <%= search_form_for @q_header, url: search_rooms_path do |f| %>
+          <%= f.search_field :address_or_room_name_cont, placeholder: 'キーワード検索' %>
+          <%= f.submit '検索' %>
+        <% end %>
+      </li>
+    </ul>
+      <% if logged_in? %>
+        <ul class="navbar-nav me-1 mb-md-0">
+          <li class="nav-item me-1 mt-1">
+          <div class="dorpdown">
+          <button class="btn" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <% if current_user.profile_image? %>
+              <%= image_tag current_user.profile_image.url(:icon), class: "rounded-circle" %>
+            <% else %>
+              <%= image_tag "default.png", alt: "メニュー", :size =>'100x100' %>
+            <% end %>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#"><%= link_to "ルーム登録", new_room_path, class: "dropdown-item"%></a></li>
+            <li><a class="dropdown-item" href="#"><%= link_to "予約済みルーム一覧", bookings_path, class: "dropdown-item" %></a></li>
+            <li><a class="dropdown-item" href="#"><%= link_to "登録済みルーム一覧", rooms_path, class: "dropdown-item" %></a></li>
+            <li><a class="dropdown-item"><%= link_to "設定", user_path(current_user.id), class: "dropdown-item" %></a></li>
+            <!--<li><a class="dropdown-item" href="#"><%= link_to "ログアウト", user_path(current_user.id), method: :delete, data: { confirm: "Are you sure?" }, class: "dropdown-item" %></a></li>-->
+            <li><a class="dropdown-item"><%= link_to "ログアウト", logout_path, class: "dropdown-item", method: :delete %><li>
+          </ul>
+          </li>
+        </ul>
+      <% else %>
+        <ul class="navbar-nav mb-md-0">
+          <li class="nav-item me-1 mt-1">
+            <%= link_to "Sign up", signup_path, class: "btn btn-info text-light" %>
+          </li>
+          <li class="nav-item me-1 mt-1">
+            <%= link_to "ログイン", login_path, class: "btn btn-success" %>
+          </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,44 @@
+<div class="bg-img">
+  <div class="container" id="top-padding">
+    <div class="col bg-light text-center p-4 p-sm-5 my-4 rounded">
+      <h1 class="display-5" id="top-dis">Potepan Shareでまだ体験したことのない旅をしよう</h1>
+      <hr class="my-4">
+      <%= search_form_for @q_header, url: search_rooms_path do |f| %>
+        <div class="row">
+          <div class="col-md-10"><%= f.search_field :address_or_room_name_cont, placeholder: 'キーワード検索', class: "form-control" %></div>
+          <div class="col"><%= f.submit '検索', class: "btn btn-outline-success" %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <p class="display-6 mt-5" id="top-dis">おすすめのエリア</p>
+    <div class="col-sm-6 col-md-3 card" id="top-card">
+      <img class="img-fluid mt-4 card-img" src="<%= asset_pack_path 'media/images/tokyo.jpg' %>" >
+      <div class="card-img-overlay">
+        <p class="display-3 text-white" id="top-card-p"><%= link_to "東京", search_rooms_path(q:{address_cont:"東京"}), class: "top-link"%> </p>
+      </div>
+  　</div>
+    <div class="col-sm-6 col-md-3 card" id="top-card">
+    <img class="img-fluid mt-4 card-img" src="<%= asset_pack_path 'media/images/osaka.jpg' %>" >
+      <div class="card-img-overlay">
+        <p class="display-3 text-white" id="top-card-p"><%= link_to "大阪", search_rooms_path(q:{address_cont:"大阪"}), class: "top-link"%> </p>
+      </div>
+　  </div>
+    <div class="col-sm-6 col-md-3 card" id="top-card">
+      <img class="img-fluid mt-4 card-img" src="<%= asset_pack_path 'media/images/kyoto.jpg' %>" >
+      <div class="card-img-overlay">
+        <p class="display-3 text-white" id="top-card-p"><%= link_to "京都", search_rooms_path(q:{address_cont:"京都"}), class: "top-link"%> </p>
+      </div>
+　    </div>
+    <div class="col-sm-6 col-md-3 card" id="top-card">
+      <img class="img-fluid mt-4 card-img" src="<%= asset_pack_path 'media/images/sapporo.jpg' %>" >
+      <div class="card-img-overlay">
+        <p class="display-3 text-white" id="top-card-p"><%= link_to "札幌", search_rooms_path(q:{address_cont:"札幌"}), class: "top-link"%> </p>
+      </div>
+    </div>
+  </div>
+</div>
