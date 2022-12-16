@@ -1,0 +1,37 @@
+<div class="container room-show">
+  <div class="row">
+    <div class="col-6 offset-3 bg-light shadow">
+      <div class="room_new_nav">
+        <h4 class="book_new_check_descript">予約内容確認</h4>
+        <h5 class="text-start mt-3"> ¥ <%= @room.fee %> / 日 </h5>
+        <div class="room_show_date_select">
+          <%= form_with model: @booking, local: true do |f| %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+            <%= f.hidden_field :start_date, value: @booking.start_date %>
+            <%= f.hidden_field :end_date, value: @booking.end_date %>
+            <%= f.hidden_field :person, value: @booking.person %>
+            <%= f.hidden_field :total_price, value: @booking.total_price %>
+
+            <p>開始日</p>
+            <%= @booking.start_date %>
+
+            <p>終了日</p>
+            <%= @booking.end_date %>
+
+            <p>使用日数 : <%= @days %>日</p>
+
+            <p>人数: <%= @booking.person %>人</p>
+
+            <p>合計金額</p>
+            <%= @booking.total_price %>
+
+            <p>上記内容でよろしければ「予約を確定」を押してください</p>
+
+            <%= f.submit "予約を確定", class: "btn btn-primary form-control my-3" %>
+            <%= f.submit "ルーム詳細に戻る", name: "back", class: "btn btn-dark form-control my-3" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
